@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PATRAK - Patient History</title>
+
+<style>
+
+*{box-sizing:border-box;}
+
+body{
+font-family:'Segoe UI', Arial, sans-serif;
+margin:0;
+background:#A7EBF2;
+color:#023859;
+}
+
+header{
+background:linear-gradient(135deg,#023859,#54ACBF);
+color:white;
+text-align:center;
+padding:40px 20px;
+}
+
+header h1{
+margin:0;
+font-size:2.8em;
+}
+
+header p{
+margin-top:10px;
+font-size:1.2em;
+}
+
+.card{
+background:white;
+margin:30px auto;
+padding:25px;
+border-radius:12px;
+max-width:900px;
+box-shadow:0 6px 12px rgba(0,0,0,0.1);
+}
+
+h2{
+margin-bottom:20px;
+}
+
+.search-box{
+display:flex;
+justify-content:center;
+margin-bottom:20px;
+}
+
+#searchInput{
+width:60%;
+padding:10px;
+border-radius:25px;
+border:1px solid #ccc;
+text-align:center;
+font-size:16px;
+}
+
+.patient-info{
+margin-bottom:20px;
+padding:15px;
+background:#f5fbfd;
+border-radius:8px;
+}
+
+.patient-info p{
+margin:5px 0;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:10px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+th{
+background:#54ACBF;
+color:white;
+}
+
+tr:hover{
+background:#f9fbfd;
+}
+
+footer{
+background:#011C40;
+color:#A7EBF2;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>PATRAK</h1>
+<p>Patient History & Visit Records</p>
+</header>
+
+<section class="card">
+
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="🔍 Search Patient Name">
+</div>
+
+<div class="patient-info">
+<h2>Patient Details</h2>
+<p><strong>Name:</strong> <span id="pname">Rahul Sharma</span></p>
+<p><strong>Age:</strong> <span id="page">32</span></p>
+<p><strong>Gender:</strong> <span id="pgender">Male</span></p>
+<p><strong>Phone:</strong> <span id="pphone">9876543210</span></p>
+</div>
+
+<h2>Visit History</h2>
+
+<table>
+<thead>
+<tr>
+<th>Date of Visit</th>
+<th>Doctor</th>
+<th>Token</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody id="historyTable">
+
+<tr>
+<td>2026-03-01</td>
+<td>Dr. Mehta</td>
+<td>T101</td>
+<td>Completed</td>
+</tr>
+
+<tr>
+<td>2026-03-03</td>
+<td>Dr. Patel</td>
+<td>T118</td>
+<td>Completed</td>
+</tr>
+
+<tr>
+<td>2026-03-05</td>
+<td>Dr. Shah</td>
+<td>T125</td>
+<td>Waiting</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<footer>
+© 2026 PATRAK | Smart Clinic System
+</footer>
+
+<script>
+
+document.getElementById("searchInput").addEventListener("keyup",function(){
+
+let value=this.value.toLowerCase();
+let rows=document.querySelectorAll("#historyTable tr");
+
+rows.forEach(row=>{
+let text=row.innerText.toLowerCase();
+row.style.display=text.includes(value)?"":"none";
+});
+
+});
+
+</script>
+
+</body>
+</html>
