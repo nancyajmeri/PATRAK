@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PATRAK - Registration Form</title>
+
+<style>
+
+*{box-sizing:border-box;}
+
+body{
+font-family:'Segoe UI',Arial,sans-serif;
+margin:0;
+background:#A7EBF2;
+color:#023859;
+}
+
+header{
+background:linear-gradient(135deg,#023859,#54ACBF);
+color:white;
+padding:40px 20px;
+text-align:center;
+}
+
+header h1{
+font-size:2.8em;
+margin:0;
+}
+
+header p{
+font-size:1.2em;
+margin-top:10px;
+}
+
+.services{
+display:flex;
+justify-content:space-around;
+flex-wrap:wrap;
+background:#54ACBF;
+color:white;
+padding:30px 10px;
+}
+
+.service-box{
+flex:1 1 200px;
+margin:10px;
+padding:20px;
+background:#26658C;
+border-radius:12px;
+text-align:center;
+}
+
+.card{
+background:white;
+margin:30px auto;
+padding:25px;
+border-radius:12px;
+max-width:900px;
+box-shadow:0 6px 12px rgba(0,0,0,0.1);
+}
+
+h2{
+color:#023859;
+margin-bottom:20px;
+}
+
+.form-group{
+margin-bottom:12px;
+}
+
+label{
+font-weight:bold;
+display:block;
+margin-bottom:4px;
+}
+
+input,select{
+width:100%;
+padding:8px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+input:focus,select:focus{
+border-color:#54ACBF;
+outline:none;
+}
+
+button{
+background:#54ACBF;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#26658C;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+th,td{
+padding:10px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+th{
+background:#54ACBF;
+color:white;
+}
+
+tr:hover{
+background:#f9fbfd;
+}
+
+.badge{
+padding:5px 12px;
+border-radius:20px;
+color:white;
+font-size:0.85em;
+font-weight:bold;
+}
+
+.waiting{background:#f39c12;}
+.progress{background:#8e44ad;}
+.completed{background:#27ae60;}
+
+#searchBar{
+width:100%;
+padding:8px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+#toast{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#011C40;
+color:white;
+padding:12px 20px;
+border-radius:8px;
+opacity:0;
+transition:all 0.4s ease;
+}
+
+#toast.show{
+opacity:1;
+transform:translateY(-10px);
+}
+
+footer{
+background:#011C40;
+color:#A7EBF2;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>PATRAK</h1>
+<p>Smart Patient Token & Visit Logging System</p>
+</header>
+
+<section class="services">
+
+<div class="service-box">
+<h3>🆘 Emergency Cases</h3>
+<p>Immediate care for urgent medical needs.</p>
+</div>
+
+<div class="service-box">
+<h3>👨‍⚕️ Qualified Doctors</h3>
+<p>Experienced professionals across specialties.</p>
+</div>
+
+<div class="service-box">
+<h3>📞 24/7 Support</h3>
+<p>Round-the-clock assistance for patients.</p>
+</div>
+
+<div class="service-box">
+<h3>💻 Online Appointment</h3>
+<p>Book consultations from anywhere.</p>
+</div>
+
+</section>
+
+
+<section class="card">
+
+<h2>🧑‍⚕️ Patient Registration</h2>
+
+<form id="patientForm">
+
+<div class="form-group">
+<label>Full Name</label>
+<input type="text" id="fullName" required>
+</div>
+
+<div class="form-group">
+<label>Age</label>
+<input type="number" id="age" required>
+</div>
+
+<div class="form-group">
+<label>Gender</label>
+<select id="gender">
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Phone</label>
+<input type="text" id="phone" required>
+</div>
+
+<button type="submit">Register Patient</button>
+
+</form>
+
+</section>
+
+
+<section class="card">
+
+<h2>📋 Visit / Consultation</h2>
+
+<form id="visitForm">
+
+<div class="form-group">
+<label>Patient ID</label>
+<input type="text" id="visitPatientId" required>
+</div>
+
+<div class="form-group">
+<label>Date</label>
+<input type="date" id="visitDate" required>
+</div>
+
+<div class="form-group">
+<label>Time</label>
+<input type="time" id="visitTime" required>
+</div>
+
+<div class="form-group">
+<label>Doctor</label>
+<input type="text" id="doctor">
+</div>
+
+<button type="submit">Log Visit</button>
+
+</form>
+
+</section>
+
+
+<section class="card">
+
+<h2>🔍 Search Visits</h2>
+
+<input type="text" id="searchBar" placeholder="Search by Patient ID / Doctor">
+
+</section>
+
+
+<section class="card">
+
+<h2>📑 Visit Log</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Visit ID</th>
+<th>Patient ID</th>
+<th>Date</th>
+<th>Time</th>
+<th>Token</th>
+<th>Doctor</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody id="visitTableBody"></tbody>
+
+</table>
+
+</section>
+
+
+<footer>
+© 2026 PATRAK | Smart Clinic System
+</footer>
+
+<div id="toast"></div>
+
+
+<script>
+
+let patientCounter=1;
+let visitCounter=1;
+let tokenCounter=100;
+
+const patients=[];
+const visitTableBody=document.getElementById("visitTableBody");
+const toast=document.getElementById("toast");
+
+
+function showToast(msg){
+toast.innerText=msg;
+toast.classList.add("show");
+setTimeout(()=>toast.classList.remove("show"),3000);
+}
+
+
+document.getElementById("patientForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const pid="P"+patientCounter++;
+
+patients.push(pid);
+
+document.getElementById("visitPatientId").value=pid;
+
+showToast("Patient Registered: "+pid);
+
+this.reset();
+
+});
+
+
+document.getElementById("visitForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const pid=document.getElementById("visitPatientId").value;
+
+if(!patients.includes(pid)){
+showToast("Patient not found!");
+return;
+}
+
+const vid="V"+visitCounter++;
+const token="T"+tokenCounter++;
+
+const date=document.getElementById("visitDate").value;
+const time=document.getElementById("visitTime").value;
+const doctor=document.getElementById("doctor").value || "N/A";
+
+const status="Waiting";
+
+const row=document.createElement("tr");
+
+row.innerHTML=`
+<td>${vid}</td>
+<td>${pid}</td>
+<td>${date}</td>
+<td>${time}</td>
+<td>${token}</td>
+<td>${doctor}</td>
+<td><span class="badge waiting">${status}</span></td>
+`;
+
+visitTableBody.appendChild(row);
+
+showToast("Visit Logged: "+vid+" for Patient "+pid);
+
+this.reset();
+
+});
+
+
+document.getElementById("searchBar").addEventListener("keyup",function(){
+
+let value=this.value.toLowerCase();
+
+let rows=document.querySelectorAll("#visitTableBody tr");
+
+rows.forEach(row=>{
+let text=row.innerText.toLowerCase();
+row.style.display=text.includes(value)?"":"none";
+});
+
+});
+
+</script>
+
+</body>
+</html>
