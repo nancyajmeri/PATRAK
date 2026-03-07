@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PATRAK - Live Token Screen</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#011C40;
+color:white;
+text-align:center;
+margin:0;
+}
+
+header{
+background:#023859;
+padding:30px;
+font-size:35px;
+font-weight:bold;
+}
+
+.container{
+display:flex;
+justify-content:center;
+gap:60px;
+margin-top:60px;
+}
+
+.box{
+background:#54ACBF;
+padding:40px;
+border-radius:12px;
+width:300px;
+}
+
+.token{
+font-size:60px;
+font-weight:bold;
+margin-top:20px;
+}
+
+.patient{
+margin-top:10px;
+font-size:18px;
+}
+
+.next{
+background:#26658C;
+}
+
+footer{
+margin-top:80px;
+font-size:14px;
+opacity:0.7;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+PATRAK Live Token Display
+</header>
+
+<div class="container">
+
+<div class="box">
+<h2>Now Serving</h2>
+<div class="token" id="currentToken">--</div>
+<div class="patient" id="currentPatient"></div>
+</div>
+
+<div class="box next">
+<h2>Next Patient</h2>
+<div class="token" id="nextToken">--</div>
+<div class="patient" id="nextPatient"></div>
+</div>
+
+</div>
+
+<footer>
+Smart Patient Token System
+</footer>
+
+<script>
+
+async function loadLiveTokens(){
+
+const res = await fetch("http://localhost:5000/api/live-token");
+const visits = await res.json();
+
+let current = visits.find(v => v.status === "In Progress");
+let next = visits.find(v => v.status === "Waiting");
+
+if(current){
+
+document.getElementById("currentToken").innerText = "T" + current.tokenNumber;
+document.getElementById("currentPatient").innerText =
+current.patientId.fullName;
+
+}else{
+
+document.getElementById("currentToken").innerText = "--";
+document.getElementById("currentPatient").innerText = "No patient";
+
+}
+
+if(next){
+
+document.getElementById("nextToken").innerText = "T" + next.tokenNumber;
+document.getElementById("nextPatient").innerText =
+next.patientId.fullName;
+
+}else{
+
+document.getElementById("nextToken").innerText = "--";
+document.getElementById("nextPatient").innerText = "No patient";
+
+}
+
+}
+
+loadLiveTokens();
+
+setInterval(loadLiveTokens,3000);
+
+</script>
+
+</body>
+</html>
