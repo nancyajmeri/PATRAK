@@ -5,216 +5,98 @@
 <title>PATRAK</title>
 
 <style>
-
-*{box-sizing:border-box;}
-
-body{
-font-family:'Segoe UI',Arial,sans-serif;
-margin:0;
-background:#A7EBF2;
-color:#023859;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* HEADER */
-
-header{
-background:linear-gradient(135deg,#023859,#54ACBF);
-color:white;
-padding:40px 20px;
-text-align:center;
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #ffffff, #A7EBF2, #3FA9F5); /* blue-white gradient */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #023859;
 }
 
-header h1{
-font-size:2.8em;
-margin:0;
+/* Large Circular Logo */
+.logo img {
+  width: 380px;   /* bigger size */
+  height: 380px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 12px solid #54ACBF;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.25);
+  margin-bottom: 40px;
 }
 
-header p{
-font-size:1.2em;
-margin-top:10px;
+/* Tagline */
+.tagline {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 50px;
+  color: #023859;
 }
 
-/* SERVICES */
-
-.services{
-display:flex;
-justify-content:space-around;
-flex-wrap:wrap;
-background:#54ACBF;
-color:white;
-padding:30px 10px;
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.service-box{
-flex:1 1 200px;
-margin:10px;
-padding:20px;
-background:#26658C;
-border-radius:12px;
-text-align:center;
+button {
+  padding: 20px 50px;
+  font-size: 18px;
+  border: none;
+  border-radius: 35px;
+  background: #54ACBF;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
-
-.service-box h3{
-margin-bottom:10px;
+button:hover {
+  background: #26658C;
+  transform: translateY(-5px);
 }
-
-/* MAIN CARD */
-
-.card{
-background:white;
-margin:40px auto;
-padding:50px 40px;
-border-radius:12px;
-max-width:750px;
-box-shadow:0 6px 12px rgba(0,0,0,0.1);
-text-align:center;
-}
-
-/* LOGO */
-
-.logo{
-display:flex;
-justify-content:center;
-align-items:center;
-margin-bottom:30px;
-padding:20px 0;
-}
-
-.logo img{
-width:420px;
-max-width:90%;
-height:auto;
-filter:drop-shadow(0px 8px 15px rgba(0,0,0,0.2));
-}
-
-/* TAGLINE */
-
-.tagline{
-font-size:22px;
-color:#26658C;
-margin-bottom:35px;
-}
-
-/* BUTTONS */
-
-.buttons{
-display:flex;
-flex-direction:column;
-gap:20px;
-width:260px;
-margin:auto;
-}
-
-button{
-padding:15px;
-font-size:18px;
-border:none;
-border-radius:10px;
-background:#54ACBF;
-color:white;
-cursor:pointer;
-transition:0.3s;
-}
-
-button:hover{
-background:#26658C;
-transform:scale(1.05);
-}
-
-/* FOOTER */
-
-footer{
-background:#011C40;
-color:#A7EBF2;
-text-align:center;
-padding:20px;
-margin-top:40px;
-}
-
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>PATRAK</h1>
-<p>Smart Patient Token & Visit Logging System</p>
-</header>
-
-
-<section class="services">
-
-<div class="service-box">
-<h3>🆘 Emergency Cases</h3>
-<p>Immediate care for urgent medical needs.</p>
-</div>
-
-<div class="service-box">
-<h3>👨‍⚕️ Qualified Doctors</h3>
-<p>Experienced professionals across specialties.</p>
-</div>
-
-<div class="service-box">
-<h3>📞 24/7 Support</h3>
-<p>Round-the-clock assistance for patients.</p>
-</div>
-
-<div class="service-box">
-<h3>💻 Online Appointment</h3>
-<p>Book consultations from anywhere.</p>
-</div>
-
-</section>
-
-
-<section class="card">
-
+<!-- Logo -->
 <div class="logo">
-<img src="images/patraklogo.png" alt="PATRAK Logo">
+  <img src="images/patraklogo.png" alt="PATRAK Logo">
 </div>
 
+<!-- Tagline -->
 <div class="tagline">
-Patient Appointment, Token & Registration Kiosk
+  Patient Appointment, Token & Registration System
 </div>
 
+<!-- Buttons -->
 <div class="buttons">
-
-<button onclick="openRegister()">
-Patient Registration
-</button>
-
-<button onclick="openHistory()">
-Patient History
-</button>
-
-<button onclick="openToken()">
-Live Token Screen
-</button>
-
+  <button onclick="openRegister()">Patient Registration</button>
+  <button onclick="openHistory()">Patient History</button>
+  <button onclick="openToken()">Live Token Screen</button>
 </div>
-
-</section>
-
-
-<footer>
-© 2026 PATRAK | Smart Clinic System
-</footer>
-
 
 <script>
-
 function openRegister(){
-window.location.href="register.html";
+  window.location.href="register.html";
 }
-
 function openHistory(){
-window.location.href="history.html";
+  window.location.href="patientHistory.html";
 }
-
 function openToken(){
-window.location.href="token.html";
+  window.location.href="token.html";
 }
-
 </script>
 
 </body>
