@@ -48,7 +48,7 @@ app.post("/api/patients/register", async (req, res) => {
       return res.status(400).json({ message: "Phone must be 10 digits" });
     }
 
-    // 🔹 NEW UX IMPROVEMENT
+    // NEW UX IMPROVEMENT
     const existingPatient = await Patient.findOne({
       fullName: { $regex: `^${fullName}$`, $options: "i" },
       phone: phone
